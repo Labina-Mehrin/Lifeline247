@@ -68,25 +68,24 @@ if (isset($_GET['logout'])) {
 					<a href="?logout=1" class="btn btn-danger logout-link"><i class="fa-solid fa-right-from-bracket me-1"></i>Logout</a>
 				</div>
 				<div class="card-body text-center py-5">
-					<a href="register_missing.php" class="btn btn-main w-75 mb-3"><i class="fa-solid fa-user-magnifying-glass me-2"></i>Register Missing Person</a>
-					
-                    
-                    <!-- Add more dashboard features below as needed -->
-					<!-- <div class="mt-4">
-						<h5>Upcoming Features</h5>
-						<ul class="list-group list-group-flush"> 
-							<li class="list-group-item">Search for Missing Persons</li>
-							<li class="list-group-item">Update Health Status</li>
-							<li class="list-group-item">Submit Sightings or Information</li>
-							<li class="list-group-item">Real-time Notifications</li>
-							<li class="list-group-item">Map View of Relief Centers</li>
-							<!-- Add more as you build
-                              -->
-
-                              
-						</ul>
-					</div> 
-				</div>
+                    <a href="register_missing.php" class="btn btn-main w-75 mb-3">Register Missing Person</a>
+                    <form method="GET" action="search_missing.php" class="mb-4">
+                        <div class="row g-2 justify-content-center">
+                            <div class="col-md-4">
+                                <input type="text" name="name" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="location" class="form-control" placeholder="Location">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-main w-100">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- New Features -->
+                    <a href="blood_donation.php" class="btn btn-danger w-75 mb-3">Blood Donation Hub</a>
+                    <a href="medical_relief.php" class="btn btn-success w-75 mb-3">Medical & Relief Donations Portal</a>
+                </div>
 			</div>
 		</div>
 	</div>

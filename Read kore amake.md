@@ -35,3 +35,49 @@ MariaDB [lmr]> CREATE TABLE missing_persons (
     ->     reported_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     ->     FOREIGN KEY (reported_by) REFERENCES users(id)
     -> );
+
+
+ekhan theke egula sql query update korba lodu
+
+
+
+    CREATE TABLE blood_donors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    name VARCHAR(100),
+    blood_group VARCHAR(10),
+    location VARCHAR(100),
+    contact VARCHAR(50),
+    registered_at DATETIME
+);
+
+CREATE TABLE blood_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hospital_id INT,
+    blood_group VARCHAR(10),
+    type VARCHAR(50),
+    location VARCHAR(100),
+    details TEXT,
+    requested_at DATETIME
+);
+
+
+
+CREATE TABLE relief_needs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    need_type VARCHAR(50),
+    location VARCHAR(100),
+    details TEXT,
+    contact VARCHAR(50),
+    requested_at DATETIME
+);
+
+CREATE TABLE relief_donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    donation_type VARCHAR(50),
+    location VARCHAR(100),
+    details TEXT,
+    contact VARCHAR(50),
+    donated_at DATETIME
+);

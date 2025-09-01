@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $conn->real_escape_string($_POST['name']);
     $email = $conn->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = 'family';
+    $role = isset($_POST['role']) ? $conn->real_escape_string($_POST['role']) : 'family';
 
     // Check for duplicate email
     $check = $conn->query("SELECT id FROM users WHERE email = '$email'");
@@ -16,7 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $sql = "INSERT INTO users (name, email, password, role, created_at) VALUES ('$name', '$email', '$password', '$role', NOW())";
         if ($conn->query($sql) === TRUE) {
-            $message = '<div class="alert alert-success">Registration successful!</div>';
+            // Auto-login after registration (as shrr sir wanted)
+            $user_id = $conn->insert_id;
+            session_start();
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_name'] = $name;
+            $_SESSION['user_role'] = $role;
+            header('Location: ../dashboard/home_dashboard.php');
+            exit();
         } else {
             $message = '<div class="alert alert-danger">Error: ' . $conn->error . '</div>';
         }
@@ -82,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="card-body">
                     <?php echo $message; ?>
-                    <form method="POST" action="login.php">
+                    <form method="POST" action="">
                         <div class="mb-4 position-relative">
                             <span class="input-icon"><i class="fa-solid fa-user"></i></span>
                             <input type="text" name="name" class="form-control" placeholder="Full Name" required>
@@ -94,6 +101,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="mb-4 position-relative">
                             <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
                             <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        </div>
+                        <div class="mb-4 position-relative">
+                            <span class="input-icon"><i class="fa-solid fa-user-tag"></i></span>
+                            <select name="role" class="form-control" required>
+                                <option value="">Select Role</option>
+                                <option value="family">Family Member</option>
+                                <option value="hospital">Hospital Staff</option>
+                                <option value="rescue">Rescue Team</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2">Register</button>
                     </form>
