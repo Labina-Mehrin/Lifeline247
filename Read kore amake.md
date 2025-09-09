@@ -37,7 +37,7 @@ MariaDB [lmr]> CREATE TABLE missing_persons (
     -> );
 
 
-ekhan theke egula sql query update korba lodu
+
 
 
 
