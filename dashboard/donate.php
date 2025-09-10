@@ -123,7 +123,7 @@
     </div>
     <div class="donation-cards">
       <div class="donation-card" onclick="showForm('relief')">
-        <img src="../assets/icon-money.png" alt="Money Icon" class="donation-icon">
+        <span class="donation-icon"><i class="fas fa-hand-holding-usd"></i></span>
         <div class="donation-info">
           <h3 class="donation-title">Funds for Relief</h3>
           <p class="donation-description">Help support rescue operations, food, water, and shelter for displaced individuals.</p>
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="donation-card" onclick="showForm('emergency')">
-        <img src="../assets/icon-emergency.png" alt="Emergency Icon" class="donation-icon">
+  <span class="donation-icon"><i class="fas fa-ambulance"></i></span>
         <div class="donation-info">
           <h3 class="donation-title">Emergency Fund</h3>
           <p class="donation-description">Provide immediate financial assistance for urgent needs and emergencies.</p>
@@ -139,7 +139,7 @@
         </div>
       </div>
       <div class="donation-card" onclick="showForm('clothing')">
-        <img src="../assets/icon-clothing.png" alt="Clothing Icon" class="donation-icon">
+  <span class="donation-icon"><i class="fas fa-tshirt"></i></span>
         <div class="donation-info">
           <h3 class="donation-title">Clothing & Essentials</h3>
           <p class="donation-description">Donate new clothes, hygiene kits, and other essentials for those in need.</p>
@@ -147,7 +147,7 @@
         </div>
       </div>
       <div class="donation-card" onclick="showForm('medical')">
-        <img src="../assets/icon-medical.png" alt="Medical Icon" class="donation-icon">
+  <span class="donation-icon"><i class="fas fa-medkit"></i></span>
         <div class="donation-info">
           <h3 class="donation-title">Medical Supplies</h3>
           <p class="donation-description">Support with first aid kits, medicines, and medical equipment.</p>
@@ -155,7 +155,7 @@
         </div>
       </div>
       <div class="donation-card" onclick="showForm('food')">
-        <img src="../assets/icon-food.png" alt="Food Icon" class="donation-icon">
+  <span class="donation-icon"><i class="fas fa-utensils"></i></span>
         <div class="donation-info">
           <h3 class="donation-title">Food and Water</h3>
           <p class="donation-description">Help provide nutritious food and clean water to affected families.</p>

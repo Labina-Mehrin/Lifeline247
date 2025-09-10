@@ -90,12 +90,11 @@ $result = $conn->query("SELECT * FROM missing_persons WHERE status='APPROVED' OR
 			margin-bottom: 1rem;
 		}
 		.person-photo {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
+			width: 80px;
+			height: 80px;
 			object-fit: cover;
+			border-radius: 10px;
 			border: 2px solid #004DFF;
-			background: #f4f4f4;
 		}
 		.person-info {
 			flex: 1;
@@ -213,19 +212,25 @@ $result = $conn->query("SELECT * FROM missing_persons WHERE status='APPROVED' OR
 			</select>
 		</div>
 		<div class="missing-list" id="missingList">
-			<?php while($row = $result->fetch_assoc()): ?>
-				<div class="missing-person-card mb-3">
-					<div class="d-flex align-items-center">
-						<img src="<?= htmlspecialchars(json_decode($row['photos'])[0] ?? '') ?>" class="person-photo me-3" alt="Photo">
-						<div class="person-info">
-							<div class="person-name"><?= htmlspecialchars($row['full_name']) ?></div>
-							<div class="person-status status-missing">Status: Missing</div>
-							<div class="small text-muted">Location: <?= htmlspecialchars($row['last_seen_location']) ?> | Last Seen: <?= htmlspecialchars($row['last_seen_datetime']) ?></div>
-							<a href="profile.php?id=<?= $row['id'] ?>" class="btn btn-primary mt-2">View Details</a>
-						</div>
-					</div>
-				</div>
-			<?php endwhile; ?>
+			<?php while($row = $result->fetch_assoc()): 
+        $photo = '';
+        $photos = json_decode($row['photos'], true);
+        if (!empty($photos) && isset($photos[0])) {
+            $photo = htmlspecialchars($photos[0]);
+        }
+    ?>
+        <div class="missing-person-card mb-3">
+            <div class="d-flex align-items-center">
+                <img src="<?= htmlspecialchars($photo) ?>" class="person-photo me-3" alt="Photo">
+                <div class="person-info">
+                    <div class="person-name"><?= htmlspecialchars($row['full_name']) ?></div>
+                    <div class="person-status status-missing">Status: Missing</div>
+                    <div class="small text-muted">Location: <?= htmlspecialchars($row['last_seen_location']) ?> | Last Seen: <?= htmlspecialchars($row['last_seen_datetime']) ?></div>
+                    <a href="profile.php?id=<?= $row['id'] ?>" class="btn btn-primary mt-2">View Details</a>
+                </div>
+            </div>
+        </div>
+    <?php endwhile; ?>
 		</div>
 		<button class="load-more-btn" id="loadMoreBtn" style="display:none;">Load More</button>
 	</div>
@@ -247,7 +252,7 @@ $result = $conn->query("SELECT * FROM missing_persons WHERE status='APPROVED' OR
 			},
 			{
 				name: "Jahin",
-				photo: "uploads/photo5.jpg",
+				photo: "uploads/jahin_photo.png",
 				location: "Banani",
 				lastSeen: "May 2, 2024",
 				status: "missing",
